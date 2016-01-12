@@ -46,6 +46,8 @@ namespace sketchyApi
 
             app.UseStaticFiles();
 
+            app.UseCors(CorsOptions.AllowAll);
+
             app.UseMvc(routes => {
                 routes.MapRoute(name: "default",
                                 template: "api/{controller}/{id}",
