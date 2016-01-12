@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Owin;
-using Microsoft.Owin.Cors;
+using Microsoft.AspNet.Cors;
 using Microsoft.AspNet.Mvc;
 using System.Web.Http;
 using Owin;
@@ -34,6 +34,13 @@ namespace sketchyApi
         {
             // Add framework services.
             services.AddMvc();
+            services.AddCors(options => {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +53,7 @@ namespace sketchyApi
 
             app.UseStaticFiles();
 
-            app.UseCors(CorsOptions.AllowAll);
+            app.UseCors("AllowAllOrigins");
 
             app.UseMvc(routes => {
                 routes.MapRoute(name: "default",

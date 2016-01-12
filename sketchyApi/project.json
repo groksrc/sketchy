@@ -19,7 +19,9 @@
     "Microsoft.AspNet.WebApi.Owin": "5.2.3",
     "Microsoft.Owin": "3.0.1",
     "Microsoft.Owin.Security.Jwt": "3.0.1",
-    "Microsoft.Owin.Cors": "3.0.1"
+    "Microsoft.Owin.Cors": "3.0.1",
+    "Microsoft.AspNet.Cors": "6.0.0-rc1-final",
+    "Microsoft.AspNet.Cors.Core": "6.0.0-beta8"
   },
   "commands": {
     "web": "Microsoft.AspNet.Server.Kestrel"
