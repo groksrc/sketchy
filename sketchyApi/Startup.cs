@@ -7,7 +7,13 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Owin;
+using Microsoft.Owin.Cors;
+using Microsoft.AspNet.Mvc;
+using System.Web.Http;
+using Owin;
 
+[assembly: OwinStartup(typeof(sketchyApi.Startup))]
 namespace sketchyApi
 {
     public class Startup
@@ -40,7 +46,12 @@ namespace sketchyApi
 
             app.UseStaticFiles();
 
-            app.UseMvc();
+            app.UseMvc(routes => {
+                routes.MapRoute(name: "default",
+                                template: "api/{controller}/{id}",
+                                defaults: new {id = RouteParameter.Optional});
+            });
+            
         }
 
         // Entry point for the application.
